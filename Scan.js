@@ -1,4 +1,4 @@
-return function(STATEMENT_TRUE, STATEMENT_FALSE)
+return function(STATEMENT_FALSE, STATEMENT_TRUE)
 	function notify(text)
 		pcall(function()
 			game:GetService("StarterGui"):SetCore("SendNotification", {
@@ -93,14 +93,14 @@ return function(STATEMENT_TRUE, STATEMENT_FALSE)
 		debug("Scanning...", 3)
 		notify("Scanning...")
 		if findRemote() then
-			if STATEMENT_TRUE then
-				pcall(STATEMENT_TRUE)
-				notify("Backdoor found!")
-			end
-		else
 			if STATEMENT_FALSE then
 				pcall(STATEMENT_FALSE)
 				notify("No backdoor found.")
+			end
+		else
+			if STATEMENT_TRUE then
+				pcall(STATEMENT_TRUE)
+				notify("Backdoor found!")
 			end
 		end
 		AutoRun = false
