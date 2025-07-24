@@ -1,0 +1,1 @@
+return function(Text)pcall(function()game:GetService("StarterGui"):SetCore("SendNotification",{Duration=5,Title="Sywatch SS",Icon="rbxassetid://16680995499",Text=Text,Button1="CLOSE"});end);end;
