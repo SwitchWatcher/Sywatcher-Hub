@@ -1,0 +1,35 @@
+-- RX6 UI Library (cleaned version) 
+local RX6 = {}
+
+function RX6:PlaySFX(SoundId, Volume, Pitch, Looped) local sound = Instance.new("Sound") sound.SoundId = "rbxassetid://" .. SoundId sound.Volume = Volume or 1 sound.Pitch = Pitch or 1 sound.Looped = Looped or false sound.PlayOnRemove = true sound.Parent = workspace sound:Destroy() return sound end
+
+function RX6:Button(parent, text, size, pos, callback) local btn = Instance.new("TextButton") btn.Size = size or UDim2.new(0, 100, 0, 40) btn.Position = pos or UDim2.new(0, 0, 0, 0) btn.Text = text btn.Parent = parent btn.Font = Enum.Font.Legacy btn.TextColor3 = Color3.new(1, 1, 1) btn.TextStrokeTransparency = 0.5 btn.BackgroundColor3 = Color3.fromRGB(0, 75, 150) btn.BackgroundTransparency = 0.15 btn.BorderSizePixel = 0 btn.MouseButton1Click:Connect(function() self:PlaySFX(156785206, 0.75, 1.25) pcall(callback) end) return btn end
+
+function RX6:Label(parent, text, size, pos) local lbl = Instance.new("TextLabel") lbl.Size = size or UDim2.new(0, 100, 0, 40) lbl.Position = pos or UDim2.new(0, 0, 0, 0) lbl.Text = text lbl.Parent = parent lbl.Font = Enum.Font.Legacy lbl.TextColor3 = Color3.new(1, 1, 1) lbl.TextStrokeTransparency = 0.5 lbl.BackgroundTransparency = 1 return lbl end
+
+function RX6:TextBox(parent, defaultText, size, pos) local box = Instance.new("TextBox") box.Size = size or UDim2.new(0, 100, 0, 40) box.Position = pos or UDim2.new(0, 0, 0, 0) box.Text = defaultText or "" box.Parent = parent box.Font = Enum.Font.Legacy box.TextColor3 = Color3.new(1, 1, 1) box.TextStrokeTransparency = 0.5 box.BackgroundColor3 = Color3.fromRGB(0, 75, 150) box.BackgroundTransparency = 0.15 box.BorderSizePixel = 0 return box end
+
+function RX6:ScrollFrame(parent, size, pos) local sf = Instance.new("ScrollingFrame") sf.Size = size or UDim2.new(1, 0, 1, 0) sf.Position = pos or UDim2.new(0, 0, 0, 0) sf.Parent = parent sf.ScrollBarThickness = 8 sf.CanvasSize = UDim2.new(0, 0, 5, 0) sf.BackgroundTransparency = 0.15 sf.BackgroundColor3 = Color3.fromRGB(0, 75, 150) return sf end
+
+function RX6:ToggleButton(parent, labelText, onFunc, offFunc) local frame = Instance.new("Frame") frame.Size = UDim2.new(0, 200, 0, 35) frame.BackgroundColor3 = Color3.fromRGB(0, 75, 150) frame.BackgroundTransparency = 0.15 frame.BorderSizePixel = 0 frame.Parent = parent
+
+local label = self:Label(frame, labelText, UDim2.new(0.6, 0, 1, 0), UDim2.new(0, 5, 0, 0))
+
+local btnOn = self:Button(frame, "On", UDim2.new(0.2, -5, 1, -10), UDim2.new(0.6, 0, 0, 5), function()
+	onFunc()
+end)
+
+local btnOff = self:Button(frame, "Off", UDim2.new(0.2, -5, 1, -10), UDim2.new(0.8, 0, 0, 5), function()
+	offFunc()
+end)
+
+return frame
+
+end
+
+function RX6:Frame(parent, size, pos) local frame = Instance.new("Frame") frame.Size = size or UDim2.new(0, 100, 0, 100) frame.Position = pos or UDim2.new(0, 0, 0, 0) frame.Parent = parent frame.BackgroundColor3 = Color3.fromRGB(0, 75, 150) frame.BackgroundTransparency = 0.15 frame.BorderSizePixel = 0 return frame end
+
+function RX6:ImageLabel(parent, imageId, size, pos) local img = Instance.new("ImageLabel") img.Image = "rbxassetid://" .. imageId img.Size = size or UDim2.new(0, 100, 0, 100) img.Position = pos or UDim2.new(0, 0, 0, 0) img.BackgroundTransparency = 1 img.Parent = parent return img end
+
+return RX6
+
